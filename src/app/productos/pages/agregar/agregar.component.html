@@ -1,0 +1,50 @@
+<h2 class="mt-5">Add producto <small>{{texto}}</small></h2>
+<hr />
+<form [formGroup]="formulario">
+  <div class="row align-items-center mb-3">
+    <div class="col-auto">
+      <label class="col-form-label">Nombre</label>
+    </div>
+    <div class="col-auto">
+      <input formControlName="nombre" type="text" class="form-control" />
+    </div>
+    <div class="col-auto">
+      <!-- <span   *ngIf="tieneError('nombre')"  class="form-text" err-msg color="red"  mensaje='Debe de ingresar este campo'>
+        Este campo es requerido
+        </span> -->
+      <span  [valido]="!tieneError('nombre')" err-msg 
+      [mensaje]='texto'
+      [color]='color'>
+        <!-- Este campo es requerido -->
+        </span>
+    </div>
+  </div>
+  <div class="row mt-5">
+    <div class="col">
+      <button type="submit" class="btn btn-primary" (click)="cambiaNombre()">Guardar</button>
+      &nbsp;
+      <button type="submit" class="btn btn-primary " (click)="cambiarColor()">CambiarColor</button> 
+    </div>
+  </div>
+</form>
+<h3 class="mt-5">Formulario</h3>
+<pre>
+    Valid:  {{ formulario.valid | json }}
+    Value:  {{ formulario.value | json }}
+</pre>
+
+<!-- mandar la referencia de todo el componente html a una directiva *-->
+<div class="row mt-5" *customIf="formulario.valid">
+  <div class="col">
+    <div class="alert alert-primary">
+      OK....
+    </div>
+  </div>
+</div>
+<!-- <div class="row mt-5" customIf *ngIf="!tieneError('nombre')">
+  <div class="col">
+    <div class="alert alert-primary">
+      OK....
+    </div>
+  </div>
+</div> -->
